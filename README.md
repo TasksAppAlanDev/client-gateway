@@ -9,4 +9,4 @@
 ## 3. Crear archivo `.env` basado en el `.env.template`
 ## 5. Ejecutar `npm run start:dev`
 
-## Esta es la API Gateway que se conecta a los microservicios de usuarios y tareas, los cuales tienen sus respectivas rutas para poblas las bases de datos y empezar pruebas
+## Esta es la API Gateway que se conecta a los microservicios de usuarios y tareas, los cuales tienen sus respectivas rutas para poblar las bases de datos y empezar pruebas
