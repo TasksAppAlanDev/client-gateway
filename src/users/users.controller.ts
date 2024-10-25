@@ -13,7 +13,7 @@ import {
 import { ClientProxy, RpcException } from '@nestjs/microservices';
 import { USER_SERVICE } from 'src/config';
 import { CreateUserDto, UpdateUserDto } from './dto';
-import { UserPaginationDto } from 'src/common';
+import { PaginationDto } from 'src/common';
 import { catchError } from 'rxjs';
 
 @Controller('users')
@@ -30,8 +30,8 @@ export class UsersController {
   }
 
   @Get()
-  getAllUsers(@Query() userPaginationDto: UserPaginationDto) {
-    return this.userClient.send('findAllUsers', userPaginationDto).pipe(
+  getAllUsers(@Query() paginationDto: PaginationDto) {
+    return this.userClient.send('findAllUsers', paginationDto).pipe(
       catchError((err) => {
         throw new RpcException(err);
       }),
@@ -64,9 +64,18 @@ export class UsersController {
       );
   }
 
-  @Delete(':id')
+  @Patch('delete/:id')
   softDeleteUser(@Param('id', ParseUUIDPipe) id: string) {
     return this.userClient.send('softDeleteUser', id).pipe(
+      catchError((err) => {
+        throw new RpcException(err);
+      }),
+    );
+  }
+
+  @Post('seed')
+  async seedTasks() {
+    return this.userClient.send('seedUsers', {}).pipe(
       catchError((err) => {
         throw new RpcException(err);
       }),

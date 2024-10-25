@@ -1,1 +1,1 @@
-export * from "./UserPagination.dto"
+export * from "./pagination.dto"
